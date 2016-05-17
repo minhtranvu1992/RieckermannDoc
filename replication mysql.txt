@@ -1,0 +1,45 @@
+ping 192.168.1.2
+
+
+log-bin=mysql-bin
+server-id = 1
+
+
+restart service
+
+mysql -u root -p
+
+
+GRANT REPLICATION SLAVE ON *.* TO 'adarrep'@'192.168.1.2' IDENTIFIED BY '123':
+
+FLUSH PRIVILEGES;
+
+show databases;
+
+use database
+
+show tables;
+
+select * from employees;
+
+flush tables with read lock;
+
+mysqldump -u root -p --opt database > name.sql
+
+mysql -u root -p
+
+unlock tables;
+
+copy name.sql to another disk on machine and turn off firewall
+
+show master status;
+
+
+file: name file be shown
+position: the number be shown
+
+stop slave;
+start slave;
+
+
+change master to master_host='192.168.1.2', master_user='adanrep', master_password='123', master_log_file='mysql.bin.000061',master_log_pos=98;
